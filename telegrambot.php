@@ -19,7 +19,7 @@ function add_msg_tr($from, $to){
 function sendDocument($chat_id, $doc){
 	$response = array(
 	'chat_id' => $chat_id,
-	'document' => curl_file_create($doc);
+	'document' => curl_file_create($doc)
 );	
 		
 $ch = curl_init('https://api.telegram.org/bot' . $token . '/sendDocument');  
