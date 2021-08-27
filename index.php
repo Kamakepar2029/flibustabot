@@ -34,7 +34,6 @@ if (isset($data['callback_query'])) {
 		if($save === false){
 		    echo ('Failed to save file to: '.$fileName);
 		}
-		sendDocument($chatid, getcwd().'/'.$urio[1]);
 		sendMessage_inline($chatid, 'Скачать '.$titles.':', $token, $keyboards);
 	}
 }
