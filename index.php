@@ -25,7 +25,7 @@ if (isset($data['callback_query'])) {
 		$dwu = explode('Downurl:',$callbdata["data"])[1];
 		$urio = explode('|',$dwu);
 		$keyboards = [];
-		$keyboards[count($keyboards)] = new_inline('Скачать', 'url', ('https://request-kamakepar.herokuapp.com/?dw='.$urio[0].'&dwf='.$urio[1]));
+		$keyboards[count($keyboards)] = new_inline('Скачать', 'url', ('https://request-kamakepar.herokuapp.com/?download='.$urio[0].'&dwf='.$urio[1]));
 		sendMessage_inline($chatid, 'Нажмите кнопку скачать и не забудьте дать другое название книге и добавить расширение: ', $token, $keyboards);
 	}
 }
