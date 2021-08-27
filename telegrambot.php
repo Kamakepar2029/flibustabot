@@ -16,6 +16,21 @@ function add_msg_tr($from, $to){
 	file_put_contents('lines.json', json_encode($jh));
 }
 
+function sendDocument($chat_id, $doc){
+	$response = array(
+	'chat_id' => $chat_id,
+	'document' => curl_file_create($doc);
+);	
+		
+$ch = curl_init('https://api.telegram.org/bot' . $token . '/sendDocument');  
+curl_setopt($ch, CURLOPT_POST, 1);  
+curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HEADER, false);
+curl_exec($ch);
+curl_close($ch);
+}
+
 function get_reply($msg){
 	$jh = file_get_contents('lines.json');
 	$jh = json_decode($jh);
