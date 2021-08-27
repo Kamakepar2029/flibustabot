@@ -32,7 +32,7 @@ if (isset($data['callback_query'])) {
 		$fileName = $urio[1];
 		$save = file_put_contents($fileName, $downloadedFileContents);
 		if($save === false){
-		    echo ('Failed to save file to: ' , $fileName);
+		    echo ('Failed to save file to: '.$fileName);
 		}
 		sendMessage_inline($chatid, 'Скачать '.$titles.':', $token, $keyboards);
 	}
