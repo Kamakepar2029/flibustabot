@@ -24,17 +24,17 @@ if (isset($data['callback_query'])) {
 	if (count(explode('Downurl:',$callbdata["data"]))==2){
 		$dwu = explode('Downurl:',$callbdata["data"])[1];
 		$urio = explode('|',$dwu);
-		$keyboards = [];
+		$keyboards = [new_inline('Скачать', 'url', 'https://flibbot.herokuapp.com/'.$urio[1])];
 		$downloadedFileContents = file_get_contents('https://flibusta.is'.$urio[0]);
 		if($downloadedFileContents === false){
-		    throw new Exception('Failed to download file at: ' . $url);
+		    echo ('Failed to download file at: ' . $url);
 		}
 		$fileName = $urio[1];
 		$save = file_put_contents($fileName, $downloadedFileContents);
 		if($save === false){
-		    throw new Exception('Failed to save file to: ' , $fileName);
+		    echo ('Failed to save file to: ' , $fileName);
 		}
-		sendDocument($chatid, getcwd().'/'.$urio[1]);
+		sendMessage_inline($chatid, 'Скачать '.$titles.':', $token, $keyboards);
 	}
 }
 
