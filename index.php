@@ -25,8 +25,16 @@ if (isset($data['callback_query'])) {
 		$dwu = explode('Downurl:',$callbdata["data"])[1];
 		$urio = explode('|',$dwu);
 		$keyboards = [];
-		$keyboards[count($keyboards)] = new_inline('Скачать', 'url', ('https://request-kamakepar.herokuapp.com/?download='.$urio[0].'&dwf='.$urio[1]));
-		sendMessage_inline($chatid, 'Нажмите кнопку скачать и не забудьте дать другое название книге и добавить расширение: ', $token, $keyboards);
+		$downloadedFileContents = file_get_contents('https://flibusta.is'.$urio[0]);
+		if($downloadedFileContents === false){
+		    throw new Exception('Failed to download file at: ' . $url);
+		}
+		$fileName = $urio[1];
+		$save = file_put_contents($fileName, $downloadedFileContents);
+		if($save === false){
+		    throw new Exception('Failed to save file to: ' , $fileName);
+		}
+		sendDocument($chatid, getcwd().'/'.$urio[1]);
 	}
 }
 
