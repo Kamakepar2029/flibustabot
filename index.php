@@ -15,7 +15,9 @@ if (isset($data['callback_query'])) {
 		$keyboards = [];
 		foreach ($as as $a){
 			$aa = explode('</a>', $a)[0];
-			$title = explode('</a>', explode('>',$aa)[1])[0];
+			$title = '<div>'.explode('</a>', explode('>',$aa)[1])[0].'</div>';
+			$gty = str_get_html($title);
+			$title = ($gty->find('div')[0])->innertext;
 			$href = explode('"',explode('href=', $aa)[1])[1];
 			$keyboards[count($keyboards)] = new_inline($title, 'callback_data', 'Downurl:'.$href.'|'.$titles.'.'.str_replace(')','',str_replace('(','',$title)));
 		}
