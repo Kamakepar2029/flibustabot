@@ -19,6 +19,7 @@ if (isset($data['callback_query'])) {
 			$gty = str_get_html($title);
 			$title = ($gty->find('div')[0])->innertext;
 			$href = explode('"',explode('href=', $aa)[1])[1];
+			sendMessage($chatid, 'Попытаюсь скачать: '.$titles.":\n".'https://flibusta.is/'.$href, $token);
 			$keyboards[count($keyboards)] = new_inline($title, 'callback_data', 'Downurl:'.$href.'|'.$titles.'.'.str_replace(')','',str_replace('(','',$title)));
 		}
 		sendMessage_inline($chatid, 'Скачать '.$titles.':', $token, $keyboards);
