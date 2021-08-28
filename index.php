@@ -27,7 +27,7 @@ if (isset($data['callback_query'])) {
 		$dwu = explode('Downurl:',$callbdata["data"])[1];
 		$urio = explode('|',$dwu);
 		$keyboards = [new_inline('Скачать', 'url', 'https://flibbot.herokuapp.com/'.$urio[1])];
-		sendMessage_inline($chatid, 'Попытаюсь скачать: '.$titles.":\n".'https://flibusta.is/'.$urio[0], $token
+		sendMessage_inline($chatid, 'Попытаюсь скачать: '.$titles.":\n".'https://flibusta.is/'.$urio[0], $token);
 		$downloadedFileContents = file_get_contents('https://flibusta.is'.$urio[0]);
 		if($downloadedFileContents === false){
 		    echo ('Failed to download file at: ' . $url);
