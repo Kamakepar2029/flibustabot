@@ -17,7 +17,7 @@ if (isset($data['callback_query'])) {
 			$aa = explode('</a>', $a)[0];
 			$title = '<div>'.explode('</a>', explode('>',$aa)[1])[0].'</div>';
 			$gty = str_get_html($title);
-			$title = ($gty->find('div')[0])->innertext;
+			$title = ($gty->find('div')[0])->plaintext;
 			$href = explode('"',explode('href=', $aa)[1])[1];
 			sendMessage($chatid, 'Попытаюсь скачать: '.$titles.":\n".'https://flibusta.is/'.$href, $token);
 			$keyboards[count($keyboards)] = new_inline($title, 'callback_data', 'Downurl:'.$href.'|'.$titles.'.'.str_replace(')','',str_replace('(','',$title)));
